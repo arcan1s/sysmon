@@ -1,0 +1,117 @@
+                      System Monitor
+System information and hardware monitor based on EG Sysmon
+Version : 1.1
+License : GPL
+
+Author : Evgeniy Alexeev aka arcanis
+E-mail : esalexeev@gmail.com
+
+
+1. Description
+2. Dependence
+3. How to install
+4. File list
+5. Change log
+
+
+1. Description
+
+System Monitor (sysmon) is superkaramba applet that monitors
+CPU, memory and network. This applet based on EG SysMon.
+
+Current version includes:
+    system information - user, uptime, kernel;
+    CPU & HDD - processor monitoring (frequency and CPU
+      usage) - single-core, dual-core or quad-core; CPU and
+      HDD temperatures;
+    memory - RAM and SWAP usage;
+    internet - speed and IP monitoring(automatic detection of
+      used device if you use two devices);
+    amarok-bar (optional).
+
+Screenshots:
+    http://imageshack.us/a/img715/9795/sysmonscr01.png
+    http://imageshack.us/a/img23/9098/sysmonscr02.png
+    http://img194.imageshack.us/img194/6653/sysmonscr03.png
+    
+Please errors and offers send to e-mail esalexeev@gmail.com.
+And sorry for my english =)
+
+
+2. Dependence
+
+    python2.7 (install script)
+    lm_sensors (for CPU temperature)
+    hddtemp (for HDD temperature)
+    amarok (for amarok bar)
+    superkaramba
+
+
+3. How to install
+
+Download and unzip archive. If you install sysmon earler REMOVE
+directory with old files. Then:
+    $ cd sysmon
+    $ ./SysMon.py
+Type:
+    $ ./SysMon.py -h
+for help message. If you want change install directory type:
+    $ ./SysMon.py -d /path/to/install/directory
+If you use network device with name with name different from
+default (eth0, eth1) you must type:
+    $ ./Sysmon.py -n netdev
+If you use two network devices you must type:
+    $ ./Sysmon.py -n1 netdev1 -n2 netdev1
+If you have dual-core processor you must type:
+    $ ./Sysmon.py -co 2
+or "-co 4" if you have quad-core processor. Also you may change 
+file with information about CPU (default is "/proc/cpuinfo"), 
+device name for HDD (default is /dev/sda), language on russian
+(default is english). You may enable autostart SysMon on KDE4 
+startup or delete amarok-bar. Also you may change text color
+and start position.
+
+For example:
+    $ ./SysMon.py -l rus -d ~/.kde4/share/apps/superkaramba/themes
+    -s ~/.kde4/Autostart -ch 70,216,29 -cm 255,255,255 
+    -c1 53,229,82 -c2 255,0,0 -n1 net0 -n2 wifi0 -hdd /dev/sda 
+    -co 2 -c /proc/cpuinfo -px 1366 -py 768
+
+
+4. File list
+
+./INSTALL
+./Logo.png
+./SysMon.py
+./sysmon_startup.sh
+./icones
+./icones/cpu.png
+./icones/internet.png
+./icones/memoire.png
+./icones/sysinfo.png
+./img
+./img/bckgrnd.png
+./img/cpugrille.png
+./img/grille.png
+./img/jauge.png
+./img/jauge_fond.png
+./img/ligne.png
+./font
+./font/Arial.TTF
+./font/DroidSansMono.ttf
+
+
+5. Change log
+
+Ver.1.2 (in dev):	+ HDD monitor
+			+ process mini-monitor
+			+ kit (disable unused blocks)
+			+ (?) buttons on amarok-bar (optional)
+
+Ver.1.1:		+ change text color
+			+ one network device support (by default)
+			+ single-core and quad-core processor
+			  support (single-core by default)
+			+ change start position
+
+Ver.1.0:		First release
