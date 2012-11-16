@@ -12,7 +12,7 @@ if __name__ == '__main__':
             action='store_true', default = False)
     
     parser.add_argument('-l','--lang', dest='lang',
-            help = 'Language (eng/rus). Default is "eng"',
+            help = 'Language (eng/rus/ger/fr). Default is "eng"',
             action='store', default = 'eng')
     
     parser.add_argument('-d','--directory', dest='dir',
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     if (args.ver):
         print ("                      System Monitor")
         print ("System information and hardware monitor based on EG Sysmon")
-        print ("Version : 1.1                                License : GPL")
+        print ("Version : 1.1.1                              License : GPL")
         print ("                                                by arcanis")
         print ("                              E-mail : esalexeev@gmail.com")
 
@@ -118,15 +118,27 @@ if __name__ == '__main__':
             if (args.lang=="rus"):
                 line=u"Информация о Системе"
                 theme.write(line.encode('utf-8'))
-            if (args.lang=="eng"):
+            elif (args.lang=="eng"):
                 line="System Informantion"
                 theme.write(line)
+            elif (args.lang=="ger"):
+                line="System-Informationen"
+                theme.write(line)
+            elif (args.lang=="fr"):
+                line=u"Système d'information"
+                theme.write(line.encode('utf-8'))
             theme.write("\" fontsize=14 font=\"Arial\" color="+args.colhead+" align=center\n\x23\n  text x=85 y=35  value=\"")
             if (args.lang=="rus"):
                 line=u"Пользователь"
                 theme.write(line.encode('utf-8'))
-            if (args.lang=="eng"):
+            elif (args.lang=="eng"):
                 line="User"
+                theme.write(line)
+            elif (args.lang=="ger"):
+                line="Benutzer"
+                theme.write(line)
+            elif (args.lang=="fr"):
+                line="Utilisateur"
                 theme.write(line)
             theme.write(" :\" fontsize=12 font=\"Arial\" color="+args.colmain+" align=left\n")
             theme.write("  text x=290 y=35 sensor=program program=\"echo ${USER}\" line=1 fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" align=right\n")
@@ -134,9 +146,15 @@ if __name__ == '__main__':
             if (args.lang=="rus"):
                 line=u"Аптайм"
                 theme.write(line.encode('utf-8'))
-            if (args.lang=="eng"):
+            elif (args.lang=="eng"):
                 line="Uptime"
                 theme.write(line)
+            elif (args.lang=="ger"):
+                line="Betriebszeit"
+                theme.write(line)
+            elif (args.lang=="fr"):
+                line=u"Disponibilité"
+                theme.write(line.encode('utf-8'))
             theme.write(" :\" fontsize=12 font=\"Arial\" color="+args.colmain+" align=left\n")
             theme.write("  text x=290 y=53 sensor=uptime format=\"%d Day(s) %Hh%Mmin\" line=1 fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" align=right\n")
             theme.write("  text x=85 y=71 value=\"Kernel :\" fontsize=12 font=\"Arial\" color="+args.colmain+" align=left\n")
@@ -151,18 +169,30 @@ if __name__ == '__main__':
             if (args.lang=="rus"):
                 line=u"Температура"
                 theme.write(line.encode('utf-8'))
-            if (args.lang=="eng"):
+            elif (args.lang=="eng"):
                 line="Temperature"
                 theme.write(line)
+            elif (args.lang=="ger"):
+                line="Temperatur"
+                theme.write(line)
+            elif (args.lang=="fr"):
+                line=u"Température"
+                theme.write(line.encode('utf-8'))
             theme.write(" :\" align=left fontsize=12 font=\"Arial\" color="+args.colmain+"\n")
             theme.write("  text x=290 y=48 sensor=program program=\"sensors | grep  'high' | awk '{print $2 }'\"  fontsize=12 font=\"Droid Sans Mono\"  interval=50000 color="+args.colmain+" align=right\n")
             theme.write("  text x=97 y=63 value=\"")
             if (args.lang=="rus"):
                 line=u"Температура HDD"
                 theme.write(line.encode('utf-8'))
-            if (args.lang=="eng"):
+            elif (args.lang=="eng"):
                 line="HDD temperature"
                 theme.write(line)
+            elif (args.lang=="ger"):
+                line="HDD-Temperatur"
+                theme.write(line)
+            elif (args.lang=="fr"):
+                line=u"Température HDD"
+                theme.write(line.encode('utf-8'))
             theme.write(" :\" align=left fontsize=12 font=\"Arial\" color="+args.colmain+"\n")
             theme.write("  text x=290 y=63 sensor=program program=\"hddtemp ")
             theme.write(args.hdd)
@@ -179,8 +209,14 @@ if __name__ == '__main__':
                 if (args.lang=="rus"):
                     line=u"Общая загрузка"
                     theme.write(line.encode('utf-8'))
-                if (args.lang=="eng"):
+                elif (args.lang=="eng"):
                     line="All"
+                    theme.write(line)
+                elif (args.lang=="ger"):
+                    line="Alle"
+                    theme.write(line)
+                elif (args.lang=="fr"):
+                    line="Tous"
                     theme.write(line)
                 theme.write(" :\"  fontsize=12 font=\"Arial\" color="+args.colmain+" align=left\n  text x=290 y=145 sensor=cpu cpu=all format=\"%v%\" align=right fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" interval=2000 align=right\n")
                 theme.write("</group>\n\x23\nimage x=10 y=260 path=\"img/ligne.png\"\n\x23\n")
@@ -211,39 +247,63 @@ if __name__ == '__main__':
                 if (args.lang=="rus"):
                     line=u"Общая загрузка"
                     theme.write(line.encode('utf-8'))
-                if (args.lang=="eng"):
+                elif (args.lang=="eng"):
                     line="All"
+                    theme.write(line)
+                elif (args.lang=="ger"):
+                    line="Alle"
+                    theme.write(line)
+                elif (args.lang=="fr"):
+                    line="Tous"
                     theme.write(line)
                 theme.write(" :\"  fontsize=12 font=\"Arial\" color="+args.colmain+" align=left\n  text x=290 y=175 sensor=cpu cpu=all format=\"%v%\" align=right fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" interval=2000 align=right\n")
                 theme.write("</group>\n\x23\nimage x=10 y=290 path=\"img/ligne.png\"\n\x23\n")
             
             
             if (args.core=="2"):
-                theme.write("\x23 Memory\n\x23\n<group> x=0 y=270\n  image x=25 y=35 path=\"icones/memoire.png\"\n  text x=160 y=5 value=\"")
+                theme.write("\x23 Memory\n\x23\n<group> x=0 y=270\n  image x=25 y=35 path=\"icones/memory.png\"\n  text x=160 y=5 value=\"")
             elif (args.core=="1"):
-                theme.write("\x23 Memory\n\x23\n<group> x=0 y=255\n  image x=25 y=35 path=\"icones/memoire.png\"\n  text x=160 y=5 value=\"")
+                theme.write("\x23 Memory\n\x23\n<group> x=0 y=255\n  image x=25 y=35 path=\"icones/memory.png\"\n  text x=160 y=5 value=\"")
             else:
-                theme.write("\x23 Memory\n\x23\n<group> x=0 y=300\n  image x=25 y=35 path=\"icones/memoire.png\"\n  text x=160 y=5 value=\"")
+                theme.write("\x23 Memory\n\x23\n<group> x=0 y=300\n  image x=25 y=35 path=\"icones/memory.png\"\n  text x=160 y=5 value=\"")
             if (args.lang=="rus"):
                 line=u"Память"
                 theme.write(line.encode('utf-8'))
-            if (args.lang=="eng"):
+            elif (args.lang=="eng"):
                 line="Memory"
                 theme.write(line)
+            elif (args.lang=="ger"):
+                line="Speicher"
+                theme.write(line)
+            elif (args.lang=="fr"):
+                line=u"Mémoire"
+                theme.write(line.encode('utf-8'))
             theme.write("\" fontsize=14 font=\"Arial\" color="+args.colhead+" align=center\n\x23\n  text x=130 y=25 sensor=memory format=\"%umb\"  fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" align=right\n  text x=260 y=25 sensor=memory format=\"")
             if (args.lang=="rus"):
                 line=u"из"
                 theme.write(line.encode('utf-8'))
-            if (args.lang=="eng"):
+            elif (args.lang=="eng"):
                 line="of"
+                theme.write(line)
+            elif (args.lang=="ger"):
+                line="von"
+                theme.write(line)
+            elif (args.lang=="fr"):
+                line="de"
                 theme.write(line)
             theme.write("  %tm Mb (RAM)\"  fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" align=right\n\x23\n  image x=83 y=41 vertical=false path=\"img/jauge_fond.png\"\n")
             theme.write("  bar x=88 y=46 sensor=memory format=\"%umb\" interval=\"1000\" vertical=false path=\"img/jauge.png\" mountpoint=\"/home\"\n\x23\n  text x=125 y=60 sensor=memory format=\"%us\"  fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" align=right\n  text x=265 y=60 sensor=memory format=\"")
             if (args.lang=="rus"):
                 line=u"из"
                 theme.write(line.encode('utf-8'))
-            if (args.lang=="eng"):
+            elif (args.lang=="eng"):
                 line="of"
+                theme.write(line)
+            elif (args.lang=="ger"):
+                line="von"
+                theme.write(line)
+            elif (args.lang=="fr"):
+                line="de"
                 theme.write(line)
             theme.write("  %ts Mb (SWAP)\" fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+"  align=right\n\x23\n  image x=83 y=77 vertical=false path=\"img/jauge_fond.png\"\n")
             theme.write("  bar x=88 y=82 sensor=memory format=\"%us\" interval=\"1000\" vertical=false path=\"img/jauge.png\" mountpoint=\"/home\"\n\x23\n")
@@ -264,7 +324,13 @@ if __name__ == '__main__':
             if (args.lang=="rus"):
                 line=u"Интернет"
                 theme.write(line.encode('utf-8'))
-            if (args.lang=="eng"):
+            elif (args.lang=="eng"):
+                line="Internet"
+                theme.write(line)
+            elif (args.lang=="ger"):
+                line="Internet"
+                theme.write(line)
+            elif (args.lang=="fr"):
                 line="Internet"
                 theme.write(line)
             theme.write("\" fontsize=14 font=\"Arial\" color="+args.colhead+" align=center\n\x23\n  text  x=97 y=26 value=\"IP (\" color="+args.colmain+" fontsize=12 font=\"Arial\" color="+args.colmain+" align=left\n")
@@ -290,8 +356,14 @@ if __name__ == '__main__':
                 if (args.lang=="rus"):
                     line=u"Внешний IP"
                     theme.write(line.encode('utf-8'))
-                if (args.lang=="eng"):
+                elif (args.lang=="eng"):
                     line="External IP"
+                    theme.write(line)
+                elif (args.lang=="ger"):
+                    line="Externe IP"
+                    theme.write(line)
+                elif (args.lang=="fr"):
+                    line="IP Externe"
                     theme.write(line)
                 theme.write(" :\" color="+args.colmain+" fontsize=12 font=\"Arial\" color="+args.colmain+" align=left\n  text x=297 y=41 sensor=program program=\"wget http://checkip.dyndns.org/ -q -O - | awk '{print $6}' | sed 's/<.*>//g'\" interval=10000 fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" align=right\n")
                 theme.write("  text x=97 y=56 value=\"Hostname :\" fontsize=12 font=\"Arial\"  color="+args.colmain+" align=left\n  text x=290 y=56 sensor=program program=\"'hostname'\" color="+args.colmain+" fontsize=12 font=\"Droid Sans Mono\" align=right\n\x23\n  image x=101 y=75 path=\"img/grille.png\"\n")
@@ -334,8 +406,14 @@ if __name__ == '__main__':
                 if (args.lang=="rus"):
                     line=u"Внешний IP"
                     theme.write(line.encode('utf-8'))
-                if (args.lang=="eng"):
+                elif (args.lang=="eng"):
                     line="External IP"
+                    theme.write(line)
+                elif (args.lang=="ger"):
+                    line="Externe IP"
+                    theme.write(line)
+                elif (args.lang=="fr"):
+                    line="IP Externe"
                     theme.write(line)
                 theme.write(" :\" color="+args.colmain+" fontsize=12 font=\"Arial\" color="+args.colmain+" align=left\n  text x=297 y=41 sensor=program program=\"wget http://checkip.dyndns.org/ -q -O - | awk '{print $6}' | sed 's/<.*>//g'\" interval=10000 fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" align=right\n")
                 theme.write("  text x=97 y=56 value=\"Hostname :\" fontsize=12 font=\"Arial\"  color="+args.colmain+" align=left\n  text x=290 y=56 sensor=program program=\"'hostname'\" color="+args.colmain+" fontsize=12 font=\"Droid Sans Mono\" align=right\n\x23\n  image x=101 y=75 path=\"img/grille.png\"\n")
@@ -367,8 +445,14 @@ if __name__ == '__main__':
                 if (args.lang=="rus"):
                     line=u"Композиция"
                     theme.write(line.encode('utf-8'))
-                if (args.lang=="eng"):
+                elif (args.lang=="eng"):
                     line="Title"
+                    theme.write(line)
+                elif (args.lang=="ger"):
+                    line="Songtitel"
+                    theme.write(line)
+                elif (args.lang=="fr"):
+                    line="Titre"
                     theme.write(line)
                 theme.write(" :\" align=left fontsize=12 font=\"Arial\" color="+args.colmain+"\n  text x=290 y=30 sensor=program program=\"title=")
                 theme.write("`qdbus org.kde.amarok /Player GetMetadata | grep -m1 title: | cut -c 7- | sed -e 's/^[ \\t]*//'`;[ `echo $title |  wc -c` -lt 20 ] && echo $title || echo `echo $title | cut -c -16`...\" fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" align=right interval=2000\n\x23\n")
@@ -376,8 +460,14 @@ if __name__ == '__main__':
                 if (args.lang=="rus"):
                     line=u"Исполнитель"
                     theme.write(line.encode('utf-8'))
-                if (args.lang=="eng"):
+                elif (args.lang=="eng"):
                     line="Artist"
+                    theme.write(line)
+                elif (args.lang=="ger"):
+                    line=u"Künstler"
+                    theme.write(line.encode('utf-8'))
+                elif (args.lang=="fr"):
+                    line="Artiste"
                     theme.write(line)
                 theme.write(" :\" align=left fontsize=12 font=\"Arial\" color="+args.colmain+"\n  text x=290 y=47 sensor=program program=\"artist=")
                 theme.write("`qdbus org.kde.amarok /Player GetMetadata | grep -m1 artist: | cut -c 14-`;[ `echo $artist | wc -c` -lt 20 ] && echo $artist || echo `echo $artist | cut -c -16`...\" fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" align=right interval=2000\n")
@@ -385,7 +475,13 @@ if __name__ == '__main__':
                 if (args.lang=="rus"):
                     line=u"Альбом"
                     theme.write(line.encode('utf-8'))
-                if (args.lang=="eng"):
+                elif (args.lang=="eng"):
+                    line="Album"
+                    theme.write(line)
+                elif (args.lang=="ger"):
+                    line="Album"
+                    theme.write(line)
+                elif (args.lang=="fr"):
                     line="Album"
                     theme.write(line)
                 theme.write(" :\" align=left fontsize=12 font=\"Arial\" color="+args.colmain+"\n  text x=290 y=64 sensor=program program=\"album=")
@@ -394,8 +490,14 @@ if __name__ == '__main__':
                 if (args.lang=="rus"):
                     line=u"Время"
                     theme.write(line.encode('utf-8'))
-                if (args.lang=="eng"):
+                elif (args.lang=="eng"):
                     line="Time"
+                    theme.write(line)
+                elif (args.lang=="ger"):
+                    line="Zeit"
+                    theme.write(line)
+                elif (args.lang=="fr"):
+                    line="Temps"
                     theme.write(line)
                 theme.write(" :\" align=left fontsize=12 font=\"Arial\" color="+args.colmain+"\n  text x=235 y=81 sensor=program program=\"milTime=")
                 theme.write("`qdbus org.kde.amarok /Player PositionGet`;[ `expr length $((milTime/1000 % 60))` -lt 2 ] && echo $((milTime/60000)):0$((milTime/1000 % 60)) || echo $((milTime/60000)):$((milTime/1000 %60))\"  fontsize=12 font=\"Droid Sans Mono\" color="+args.colmain+" align=right interval=2000\n")
@@ -414,10 +516,13 @@ if __name__ == '__main__':
             xml.write(" <themefile>sysmon.theme</themefile>\n <name>System Monitor</name>\n <icon>Logo.png</icon>\n")
             xml.write(" <description>System information and hardware monitor based on EG Sysmon. Monitors CPU, memory, network traffic (for two network devices) and amarok. </description>")
             xml.write(" <author>Evgeniy Alexeev aka arcanis</author>\n <author_email>esalexeev@gmail.com</author_email>\n")
-            xml.write("\t<version>1.1</version>\n\t<license>GPL</license>\n</superkaramba_theme>")
+            xml.write("\t<version>1.1.1</version>\n\t<license>GPL</license>\n</superkaramba_theme>")
     
     
         if (args.startup):
+            src=os.getcwd()+"/startup.sh"
+            new_st=os.getcwd()+"/sysmon_startup.sh"
+            shutil.copy(src, new_st)
             with open("sysmon_startup.sh", 'a') as start:
                 start.write("superkaramba ")
                 if (args.dir):
@@ -433,9 +538,16 @@ if __name__ == '__main__':
 
         if (args.dir):
             tar_dir=os.path.abspath(args.dir)+"/sysmon"
+            if (os.path.exists(tar_dir)):
+                shutil.rmtree(tar_dir)
             cur_dir=os.getcwd()
             shutil.copytree(cur_dir, tar_dir)
             rem=tar_dir+"/SysMon.py"
             os.remove(rem)
-            rem=tar_dir+"/sysmon_startup.sh"
+            rem=tar_dir+"/startup.sh"
             os.remove(rem)
+            rem=tar_dir+"/INSTALL"
+            os.remove(rem)
+            if (args.startup):
+                rem=tar_dir+"/sysmon_startup.sh"
+                os.remove(rem)

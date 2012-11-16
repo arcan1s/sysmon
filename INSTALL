@@ -1,6 +1,6 @@
                       System Monitor
 System information and hardware monitor based on EG Sysmon
-Version : 1.1
+Version : 1.1.1
 License : GPL
 
 Author : Evgeniy Alexeev aka arcanis
@@ -49,8 +49,7 @@ And sorry for my english =)
 
 3. How to install
 
-Download and unzip archive. If you install sysmon earler REMOVE
-directory with old files. Then:
+Download and unzip archive. Then:
     $ cd sysmon
     $ ./SysMon.py
 Type:
@@ -66,10 +65,10 @@ If you have dual-core processor you must type:
     $ ./Sysmon.py -co 2
 or "-co 4" if you have quad-core processor. Also you may change 
 file with information about CPU (default is "/proc/cpuinfo"), 
-device name for HDD (default is /dev/sda), language on russian
-(default is english). You may enable autostart SysMon on KDE4 
-startup or delete amarok-bar. Also you may change text color
-and start position.
+device name for HDD (default is /dev/sda), language on russian,
+german of french (default is english). You may enable autostart 
+SysMon on KDE4 startup or delete amarok-bar. Also you may change 
+text color and start position.
 
 For example:
     $ ./SysMon.py -l rus -d ~/.kde4/share/apps/superkaramba/themes
@@ -83,11 +82,11 @@ For example:
 ./INSTALL
 ./Logo.png
 ./SysMon.py
-./sysmon_startup.sh
+./startup.sh
 ./icones
 ./icones/cpu.png
 ./icones/internet.png
-./icones/memoire.png
+./icones/memory.png
 ./icones/sysinfo.png
 ./img
 ./img/bckgrnd.png
@@ -107,6 +106,12 @@ Ver.1.2 (in dev):	+ HDD monitor
 			+ process mini-monitor
 			+ kit (disable unused blocks)
 			+ (?) buttons on amarok-bar (optional)
+
+Ver.1.1.1		+ language: french and german (alfa: google
+			  translate)
+			* bug with remove "sysmon_startup.sh"
+			* bug with install if directory exist
+			* bug with adding string in startup script
 
 Ver.1.1:		+ change text color
 			+ one network device support (by default)
