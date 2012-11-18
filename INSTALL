@@ -1,6 +1,6 @@
-                      System Monitor
+                     Kit System Monitor
 System information and hardware monitor based on EG Sysmon
-Version : 1.1.1
+Version : 1.2
 License : GPL
 
 Author : Evgeniy Alexeev aka arcanis
@@ -16,23 +16,25 @@ E-mail : esalexeev@gmail.com
 
 1. Description
 
-System Monitor (sysmon) is superkaramba applet that monitors
+Kit System Monitor (sysmon) is superkaramba applet that monitors
 CPU, memory and network. This applet based on EG SysMon.
 
 Current version includes:
     system information - user, uptime, kernel;
-    CPU & HDD - processor monitoring (frequency and CPU
-      usage) - single-core, dual-core or quad-core; CPU and
-      HDD temperatures;
+    CPU - processor monitoring (frequency and CPU usage) - 
+      single-core, dual-core or quad-core; CPU temperature;
+    process - process monitor
     memory - RAM and SWAP usage;
-    internet - speed and IP monitoring(automatic detection of
+    HDD - HDD monitoring (for one, two of three mountpoint), HDD
+      temperature;
+    internet - speed and IP monitoring (automatic detection of
       used device if you use two devices);
-    amarok-bar (optional).
+    amarok-bar (with buttons).
 
 Screenshots:
-    http://imageshack.us/a/img715/9795/sysmonscr01.png
-    http://imageshack.us/a/img23/9098/sysmonscr02.png
-    http://img194.imageshack.us/img194/6653/sysmonscr03.png
+    http://imageshack.us/a/img837/199/kitsysmon01.png
+    http://imageshack.us/a/img24/4354/kitsysmon02.png
+    http://imageshack.us/a/img600/5179/kitsysmon03.png
     
 Please errors and offers send to e-mail esalexeev@gmail.com.
 And sorry for my english =)
@@ -43,6 +45,7 @@ And sorry for my english =)
     python2.7 (install script)
     lm_sensors (for CPU temperature)
     hddtemp (for HDD temperature)
+    procps (for procinfo bar)
     amarok (for amarok bar)
     superkaramba
 
@@ -51,67 +54,80 @@ And sorry for my english =)
 
 Download and unzip archive. Then:
     $ cd sysmon
-    $ ./SysMon.py
+    $ ./KitSysMon.py
 Type:
-    $ ./SysMon.py -h
+    $ ./KitSysMon.py -h
 for help message. If you want change install directory type:
-    $ ./SysMon.py -d /path/to/install/directory
+    $ ./KitSysMon.py -d /path/to/install/directory
+Also if you want use more than one copy KitSysMon type:
+    $ ./KitSysMon.py -d /path/to/install/directory -m MARK
 If you use network device with name with name different from
-default (eth0, eth1) you must type:
-    $ ./Sysmon.py -n netdev
+default (eth0) you must type:
+    $ ./KitSysmon.py -n netdev
 If you use two network devices you must type:
-    $ ./Sysmon.py -n1 netdev1 -n2 netdev1
+    $ ./KitSysmon.py -n1 netdev1 -n2 netdev1
 If you have dual-core processor you must type:
-    $ ./Sysmon.py -co 2
+    $ ./KitSysmon.py -co 2
 or "-co 4" if you have quad-core processor. Also you may change 
 file with information about CPU (default is "/proc/cpuinfo"), 
-device name for HDD (default is /dev/sda), language on russian,
-german of french (default is english). You may enable autostart 
-SysMon on KDE4 startup or delete amarok-bar. Also you may change 
-text color and start position.
+device name for HDD (default is /dev/sda), number of mount point
+and path to them on hdd bar, language on russian, german or french 
+(default is english). You may enable autostart KitSysMon on KDE4
+startup and buttons on amarok bar. Also you may change text color 
+and start position.
+This version is full kit system monitor - you may disable any bar.
 
-For example:
-    $ ./SysMon.py -l rus -d ~/.kde4/share/apps/superkaramba/themes
-    -s ~/.kde4/Autostart -ch 70,216,29 -cm 255,255,255 
-    -c1 53,229,82 -c2 255,0,0 -n1 net0 -n2 wifi0 -hdd /dev/sda 
-    -co 2 -c /proc/cpuinfo -px 1366 -py 768
+For example (with all parametrs and all bars):
+    $ ./KitSysMon.py -l rus -d ~/.kde4/share/apps/superkaramba 
+      -m new -s ~/.kde4/Autostart -ch 70,216,29 -cm 255,255,255 
+      -c1 53,229,82 -c2 255,0,0 -c3 0,128,255 -c4 253,233,16 -ab 
+      -n1 net0 -n2 wifi0 -hdd /dev/sda -mp1 / -mp2 /mnt/global 
+      -mp3 /mnt/windows -co 2 -c /proc/cpuinfo -px 1366 -py 768
 
 
 4. File list
 
 ./INSTALL
+./KitSysMon.py
 ./Logo.png
-./SysMon.py
 ./startup.sh
-./icones
+./font/DroidSansMono.ttf
+./font/Arial.TTF
 ./icones/cpu.png
 ./icones/internet.png
+./icones/hdd.png
 ./icones/memory.png
 ./icones/sysinfo.png
-./img
+./img/next.png
+./img/ligne.png
+./img/jauge.png
+./img/prev.png
+./img/stop.png
+./img/jauge_fond.png
+./img/play.png
+./img/grille.png
 ./img/bckgrnd.png
 ./img/cpugrille.png
-./img/grille.png
-./img/jauge.png
-./img/jauge_fond.png
-./img/ligne.png
-./font
-./font/Arial.TTF
-./font/DroidSansMono.ttf
 
 
 5. Change log
 
-Ver.1.2 (in dev):	+ HDD monitor
+Ver.1.2:		+ HDD monitor
 			+ process mini-monitor
 			+ kit (disable unused blocks)
-			+ (?) buttons on amarok-bar (optional)
+			+ buttons on amarok-bar (from System Monitor
+			  Amarok2)
+			+ "mark" flag
+			* "HDD Temperature" move in HDD bar
+			* "CPU & HDD" bar is "CPU" bar now
+			* SysMon is KitSysMon now
+			* color 3 is now 0,128,255
 
-Ver.1.1.1		+ language: french and german (alfa: google
+Ver.1.1.1:		+ language: french and german (alfa: google
 			  translate)
-			* bug with remove "sysmon_startup.sh"
-			* bug with install if directory exist
-			* bug with adding string in startup script
+			- bug with remove "sysmon_startup.sh"
+			- bug with install if directory exist
+			- bug with adding string in startup script
 
 Ver.1.1:		+ change text color
 			+ one network device support (by default)
