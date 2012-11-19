@@ -1,6 +1,6 @@
                      Kit System Monitor
 System information and hardware monitor based on EG Sysmon
-Version : 1.2
+Version : 1.3
 License : GPL
 
 Author : Evgeniy Alexeev aka arcanis
@@ -25,16 +25,16 @@ Current version includes:
       single-core, dual-core or quad-core; CPU temperature;
     process - process monitor
     memory - RAM and SWAP usage;
-    HDD - HDD monitoring (for one, two of three mountpoint), HDD
+    HDD - HDD monitoring (for one, two or three mountpoint), HDD
       temperature;
-    internet - speed and IP monitoring (automatic detection of
+    internet - netspeed and IP monitoring (automatic detection of
       used device if you use two devices);
     amarok-bar (with buttons).
 
 Screenshots:
     http://imageshack.us/a/img837/199/kitsysmon01.png
     http://imageshack.us/a/img24/4354/kitsysmon02.png
-    http://imageshack.us/a/img600/5179/kitsysmon03.png
+    http://img849.imageshack.us/img849/5179/kitsysmon03.png
     
 Please errors and offers send to e-mail esalexeev@gmail.com.
 And sorry for my english =)
@@ -63,11 +63,11 @@ Also if you want use more than one copy KitSysMon type:
     $ ./KitSysMon.py -d /path/to/install/directory -m MARK
 If you use network device with name with name different from
 default (eth0) you must type:
-    $ ./KitSysmon.py -n netdev
+    $ ./KitSysMon.py -n netdev
 If you use two network devices you must type:
-    $ ./KitSysmon.py -n1 netdev1 -n2 netdev1
+    $ ./KitSysMon.py -n1 netdev1 -n2 netdev1
 If you have dual-core processor you must type:
-    $ ./KitSysmon.py -co 2
+    $ ./KitSysMon.py -co 2
 or "-co 4" if you have quad-core processor. Also you may change 
 file with information about CPU (default is "/proc/cpuinfo"), 
 device name for HDD (default is /dev/sda), number of mount point
@@ -75,14 +75,32 @@ and path to them on hdd bar, language on russian, german or french
 (default is english). You may enable autostart KitSysMon on KDE4
 startup and buttons on amarok bar. Also you may change text color 
 and start position.
-This version is full kit system monitor - you may disable any bar.
+This version is full kit system monitor - you may disable any bar and
+change its order. If you want this type:
+    $ ./KitSysMon.py -o 1234567
+ mark "1" is System information
+ mark "2" is CPU bar
+ mark "3" is Process information
+ mark "4" is Memory bar
+ mark "5" is HDD bar
+ mark "6" is Network information
+ mark "7" is Amarok bar
+For example command "-o 7654321" install KitSysMon with next order:
+  Amarok bar
+  Network information
+  HDD bar
+  Memory bar
+  Process information
+  CPU bar
+  System information
+Command "-o 444" install three Memory bar.
 
 For example (with all parametrs and all bars):
-    $ ./KitSysMon.py -l rus -d ~/.kde4/share/apps/superkaramba 
-      -m new -s ~/.kde4/Autostart -ch 70,216,29 -cm 255,255,255 
-      -c1 53,229,82 -c2 255,0,0 -c3 0,128,255 -c4 253,233,16 -ab 
-      -n1 net0 -n2 wifi0 -hdd /dev/sda -mp1 / -mp2 /mnt/global 
-      -mp3 /mnt/windows -co 2 -c /proc/cpuinfo -px 1366 -py 768
+    $ ./KitSysMon.py -l eng -d ~/.kde4/share/apps/superkaramba/themes/
+    -m new -s ~/.kde4/Autostart -o 1234567 -co 2 -c /proc/cpuinfo 
+    -hi 3 -mp1 / -mp2 /mnt/global -mp3 /mnt/windows -hdd /dev/sda 
+    -n1 net0 -n2 wifi0 -px 1366 -py 768 -ch 70,216,29 -cm 255,255,255 
+    -c1 53,229,82 -c2 255,0,0 -c3 0,128,255 -c4 253,233,16
 
 
 4. File list
@@ -111,6 +129,11 @@ For example (with all parametrs and all bars):
 
 
 5. Change log
+
+Ver.1.3:		+ function of change bars order in widget
+			* flags "-si", "-ci", "-pi", "-mi", "-ni",
+			  "-a" move into flag "-o"
+			- bug with end of line in sysinfo bar
 
 Ver.1.2:		+ HDD monitor
 			+ process mini-monitor
